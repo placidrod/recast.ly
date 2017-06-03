@@ -6,6 +6,7 @@ class App extends React.Component {
       videos: window.exampleVideoData
     };
     this.setCurrentVideo = this.setCurrentVideo.bind(this);
+    this.getYoutubeVideos = this.getYoutubeVideos.bind(this);
   }
 
   componentDidMount() {
@@ -34,7 +35,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav getYoutubeVideos={this.getYoutubeVideos}/>
         <div className="col-md-7">
           <VideoPlayer video={this.state.currentVideo}/>
         </div>
