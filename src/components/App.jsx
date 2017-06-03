@@ -1,11 +1,28 @@
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       currentVideo: window.exampleVideoData[0],
       videos: window.exampleVideoData
     };
     this.setCurrentVideo = this.setCurrentVideo.bind(this);
+  }
+
+  componentDidMount() {
+    this.getYoutubeVideos('corgis');
+  }
+
+  getYoutubeVideos(query) {
+    var options = {
+      key: this.props.API_Key,
+      query: query
+    };
+    this.props.searchYouTube(options, videos => {
+      this.setState({
+        videos: videos,
+        currentVideo: videos[0]
+      });
+    });
   }
 
   setCurrentVideo(selectedVideo) {
